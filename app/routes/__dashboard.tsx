@@ -66,7 +66,7 @@ export default function WithSubnavigation() {
           <Collapse in={isOpen} animateOpacity>
             <MobileNav />
           </Collapse>
-          <Flex flexDir="column" w="full" h="full" px={4}>
+          <Flex flexDir="column" w="full" h="full" px={4} bgColor="gray.50">
             <DashboardContainer />
             <Outlet />
           </Flex>
