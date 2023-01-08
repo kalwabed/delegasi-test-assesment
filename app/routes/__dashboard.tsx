@@ -7,16 +7,14 @@ import {
   Collapse,
   Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useDisclosure,
   Image
 } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import DashboardContainer from '~/container/dashboard'
-import { Outlet, useMatches } from '@remix-run/react'
+import { Outlet } from '@remix-run/react'
+import { SearchContextProvider } from '~/context'
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
@@ -67,8 +65,10 @@ export default function WithSubnavigation() {
             <MobileNav />
           </Collapse>
           <Flex flexDir="column" w="full" h="full" px={4} bgColor="gray.50" pb={8}>
-            <DashboardContainer />
-            <Outlet />
+            <SearchContextProvider>
+              <DashboardContainer />
+              <Outlet />
+            </SearchContextProvider>
           </Flex>
         </Box>
       </Box>
