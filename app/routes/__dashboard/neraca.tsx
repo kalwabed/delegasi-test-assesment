@@ -29,7 +29,7 @@ const NeracaPage = () => {
             {item.details.map((detail, i2) => (
               <DataCard
                 key={detail.label}
-                bgColor="blue.100"
+                bgColor="purple.100"
                 icon={i1 == 1 ? cardIcons[i2 + 2] : cardIcons[i2]}
                 {...detail}
               />

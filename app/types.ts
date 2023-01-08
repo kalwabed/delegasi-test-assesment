@@ -3,4 +3,5 @@ export interface Laporan {
   month: string
   value: number
   details: Laporan[]
+  children: Laporan[]
 }

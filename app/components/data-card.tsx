@@ -19,6 +19,7 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
+import { Link } from '@remix-run/react'
 import { HiChevronRight } from 'react-icons/hi2'
 import type { Laporan } from '~/types'
 
@@ -31,7 +32,7 @@ interface DataCardProps extends Laporan {
 }
 
 const DataCard = (props: DataCardProps) => {
-  const { bgColor, icon, label, value, details } = props
+  const { bgColor, icon, label, value, details, children } = props
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -52,6 +53,12 @@ const DataCard = (props: DataCardProps) => {
           <Button rightIcon={<HiChevronRight />} onClick={onOpen} variant="ghost" color="gray.500" size="xs">
             Detail
           </Button>
+        ) : children?.length > 0 ? (
+          <Link to="/aktiva-lancar">
+            <Button rightIcon={<HiChevronRight />} variant="ghost" color="gray.500" size="xs">
+              Detail
+            </Button>
+          </Link>
         ) : null}
       </CardFooter>
 

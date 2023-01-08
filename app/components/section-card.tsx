@@ -20,14 +20,18 @@ import type { Laporan } from '~/types'
 import { formatCurrency } from '~/utils/currency'
 import { dateFormatter } from '~/utils/date'
 
-const SectionCard = (props: Laporan) => {
-  const { label, value, month } = props
+interface SectionCardProps extends Laporan {
+  headingSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
+}
+
+const SectionCard = (props: SectionCardProps) => {
+  const { label, value, month, headingSize = 'md' } = props
 
   return (
     <Card direction="row" overflow="hidden" shadow="lg" bgColor="white" justify="space-between" align="center">
       <CardHeader>
         <Flex align="center">
-          <Heading size="md">{label}</Heading>
+          <Heading size={headingSize}>{label}</Heading>
           <Popover isLazy placement="top">
             <PopoverTrigger>
               <IconButton size="sm" variant="ghost" colorScheme="orange" icon={<InfoIcon />} aria-label="info" />
