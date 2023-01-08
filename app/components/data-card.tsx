@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Stat,
@@ -78,6 +79,7 @@ const DataCard = (props: DataCardProps) => {
               </Flex>
             ))}
           </ModalBody>
+          <ModalFooter />
         </ModalContent>
       </Modal>
     </Card>
