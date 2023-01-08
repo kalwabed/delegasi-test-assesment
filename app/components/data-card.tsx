@@ -1,19 +1,19 @@
-import { FcChargeBattery } from 'react-icons/fc'
 import { Card, CardBody, CardHeader, Heading, Text } from '@chakra-ui/react'
 import { formatCurrency } from '~/utils/currency'
 import type { Laporan } from '../routes/__dashboard/index'
 
 interface DataCardProps extends Laporan {
   bgColor?: string
+  icon: React.ReactNode
 }
 
 const DataCard = (props: DataCardProps) => {
-  const { bgColor, label, value } = props
+  const { bgColor, icon, label, value } = props
 
   return (
-    <Card bgColor="blue.100" shadow="md">
+    <Card bgColor={bgColor} shadow="md">
       <CardHeader pb={2}>
-        <FcChargeBattery size="3rem" />
+        {icon}
         <Heading size="xs" mt={2} color="gray.600">
           {label}
         </Heading>
