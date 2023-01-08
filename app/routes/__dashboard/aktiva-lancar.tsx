@@ -4,6 +4,7 @@ import { useLoaderData } from '@remix-run/react'
 import cardIcons from '~/components/card-icons'
 import DataCard from '~/components/data-card'
 import SectionCard from '~/components/section-card'
+import { useSearch } from '~/hooks/use-search'
 import type { Laporan } from '~/types'
 
 export const loader = async (): Promise<Laporan> => {
@@ -15,14 +16,15 @@ export const loader = async (): Promise<Laporan> => {
 }
 
 const AktivaLancarPage = () => {
-  const aktivaLancar = useLoaderData<typeof loader>()
+  const laporan = useLoaderData<typeof loader>()
+  const { laporan: aktivaLancar } = useSearch(laporan)
 
   return (
     <Flex flexDir="column" gap={8}>
-      <SectionCard headingSize="sm" {...aktivaLancar} />
+      <SectionCard headingSize="sm" {...laporan} />
 
       <SimpleGrid templateColumns="repeat(auto-fill, minmax(150px, 1fr))" spacing={5}>
-        {aktivaLancar.children.map((detail, i) => (
+        {aktivaLancar.map((detail, i) => (
           <DataCard key={detail.label} bgColor="teal.100" icon={cardIcons[i]} {...detail} />
         ))}
       </SimpleGrid>

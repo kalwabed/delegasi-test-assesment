@@ -7,10 +7,12 @@ export function useSearch(laporan: Laporan, deep = 1) {
   const { search: searchValue } = useSearchContext()
 
   const searchResult = useMemo(() => {
+    const data = laporan.children ?? laporan.details
+
     if (searchValue) {
       if (deep > 1) {
         const result: Laporan[] = []
-        laporan.details?.forEach(detail => {
+        data?.forEach(detail => {
           const searchedDetails = detail.details?.filter(subDetail => {
             return subDetail.label.toLowerCase().includes(searchValue.toLowerCase())
           })
@@ -25,13 +27,13 @@ export function useSearch(laporan: Laporan, deep = 1) {
 
         return result
       } else {
-        return laporan.details.filter(detail => {
+        return data.filter(detail => {
           return detail.label.toLowerCase().includes(searchValue.toLowerCase())
         })
       }
     }
 
-    return laporan.details
+    return data
   }, [searchValue, laporan])
 
   return { laporan: searchResult }
