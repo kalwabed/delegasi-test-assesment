@@ -20,9 +20,10 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import { HiChevronRight } from 'react-icons/hi2'
+import type { Laporan } from '~/types'
 
 import { formatCurrency } from '~/utils/currency'
-import type { Laporan } from '../routes/__dashboard/index'
+import { dateFormatter } from '~/utils/date'
 
 interface DataCardProps extends Laporan {
   bgColor?: string
@@ -47,7 +48,7 @@ const DataCard = (props: DataCardProps) => {
         </Text>
       </CardBody>
       <CardFooter justify="end" pt={0}>
-        {details.length > 0 ? (
+        {details?.length > 0 ? (
           <Button rightIcon={<HiChevronRight />} onClick={onOpen} variant="ghost" color="gray.500" size="xs">
             Detail
           </Button>
@@ -60,14 +61,12 @@ const DataCard = (props: DataCardProps) => {
           <ModalHeader>{label}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {details.map(detail => (
+            {details?.map(detail => (
               <Flex key={detail.label} shadow="md" mb={2}>
                 <Stat p={2}>
                   <StatLabel>{detail.label}</StatLabel>
                   <StatNumber fontSize="md">{formatCurrency(detail.value)}</StatNumber>
-                  <StatHelpText>
-                    {new Intl.DateTimeFormat('id', { dateStyle: 'medium' }).format(new Date(detail.month))}
-                  </StatHelpText>
+                  <StatHelpText>{dateFormatter(new Date(detail.month))}</StatHelpText>
                 </Stat>
               </Flex>
             ))}

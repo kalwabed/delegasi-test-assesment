@@ -16,8 +16,9 @@ import {
   Portal,
   Text
 } from '@chakra-ui/react'
+import type { Laporan } from '~/types'
 import { formatCurrency } from '~/utils/currency'
-import type { Laporan } from '../routes/__dashboard/index'
+import { dateFormatter } from '~/utils/date'
 
 const SectionCard = (props: Laporan) => {
   const { label, value, month } = props
@@ -37,7 +38,7 @@ const SectionCard = (props: Laporan) => {
                 <PopoverCloseButton />
                 <PopoverHeader>Periode</PopoverHeader>
                 <PopoverBody>
-                  <Text>{new Intl.DateTimeFormat('id', { dateStyle: 'long' }).format(new Date(month))}</Text>
+                  <Text>{dateFormatter(new Date(month), { dateStyle: 'long' })}</Text>
                 </PopoverBody>
               </PopoverContent>
             </Portal>
